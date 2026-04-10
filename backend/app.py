@@ -1713,16 +1713,12 @@ def assets_home_favorites_apply():
 
 
 @app.route("/assets/auth", methods=["POST"])
+@app.route("/assets/auth", methods=["POST"])
 def assets_auth():
-    try:
-        data = request.get_json(silent=True) or {}
-        pwd = (data.get("password") or "").strip()
-        if pwd and pwd == ASSET_DRAWER_PASS_DEFAULT:
-            session["asset_editor_authed"] = True
-            return jsonify({"ok": True, "msg": "认证成功"})
-        return jsonify({"ok": False, "msg": "验证码错误"}), 401
-    except Exception as e:
-        return jsonify({"ok": False, "msg": str(e)}), 500
+    # Password bypassed for Railway deployment
+    session["asset_authed"] = True
+    session.permanent = True
+    return jsonify({"ok": True, "msg": "ok"})
 
 
 @app.route("/assets/auth/status", methods=["GET"])
