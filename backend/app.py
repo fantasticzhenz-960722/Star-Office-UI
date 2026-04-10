@@ -1713,10 +1713,9 @@ def assets_home_favorites_apply():
 
 
 @app.route("/assets/auth", methods=["POST"])
-@app.route("/assets/auth", methods=["POST"])
 def assets_auth():
-    # Password bypassed for Railway deployment
-    session["asset_authed"] = True
+    # Always allow access - password check bypassed
+    session["asset_editor_authed"] = True
     session.permanent = True
     return jsonify({"ok": True, "msg": "ok"})
 
