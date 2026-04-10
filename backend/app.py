@@ -2066,7 +2066,7 @@ def assets_upload():
 
 
 if __name__ == "__main__":
-    raw_port = os.environ.get("STAR_BACKEND_PORT", "19000")
+    raw_port = os.environ.get("PORT") or os.environ.get("STAR_BACKEND_PORT", "19000")
     try:
         backend_port = int(raw_port)
     except ValueError:
